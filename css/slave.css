@@ -8,22 +8,47 @@ a {
 	color: #008800;
 }
 
+.error {
+	font-weight: bold;
+	font-size: 15;
+	color: red;
+}
+
+.info {
+	font-size: 15;
+	color: green;
+}
+
 .opcion {
 	font-weight: bold;
 	font-size: 15;
 	color: #009900;
 }
 
-.menu_bg{
-	width: 100%;
-	height: 100%;
+.header {
+	width:100%;
+	height: 20px;
+	font-size: 15;	
+	text-align:right;
+	vertical-align:top;
+}
+
+a.header {
+	color: red;
+}
+
+.bg{
+	width:100%;
+	height:100%;
 	z-index: 1;
 	position: absolute;
+	top: 0px;
+	left: 0px;
 	background-color: black;
 	opacity: 0.75;
 }
 
-.menu{
+.form{
 	margin: 5% 15%;
 	z-index: 2;
 	position: absolute;
@@ -32,130 +57,67 @@ a {
 	padding: 10px;
 }
 
-.menu table{
-	width: 700px;
-	height: 500px;
+.login{
+	width: 300px;
+	height: 100px;
+	z-index: 2;
+	margin: 15% 35%;
+	position:absolute;
+	background-color: white;
+	border: 3px solid black;
+	padding: 10px;
 }
 
-.menu td {
-	padding: 20px;
-	margin: 2px;
-}
-
-.cerrar{
-	position: absolute;
-	right: 15px;
-	top: 10px;
-	color: red;
-	font-weight: bold;
-	font-size: 20;
-	font-family: monospace;
-	
-}
-
-#menu_bar {
+.menu {
 	clear: both;
 	position: relative;
 }
 
-#menu_bar ul {
-	list-style: none;
+.menu ul {
+	list-style-type: none;
 	height: 50px;
-	margin : 0 0;
+	margin : 0;
 	padding: 0;
 }
 
-#menu_bar li {
+.menu li {
 	float: right;
 }
 
-#menu_bar a {
+.menu a {
 	display: block;
 	height: 50px;
 	width: 160px;
 	text-align: right;
 	vertical-align: middle;
-	border: 2px solid black;
+	border: 1px solid black;
 	background: none;
 	font-size: 17px;
 	font-variant: small-caps;
 	font-weight: bold;
 }
 
-#menu_bar ul li a:hover {
-	color: red;
+.menu a:hover {
+	background-color: red;
 }
 
-.ost{
-	font-weight: bold;
-	font-size: 10;
-	color: #993399;
+.orders{
+	position:absolute;
+	top:100px;
+	left:0px;
+	height:100%;
+	width:20%
 }
 
-.orden{
-	width: 300;
-	border: 2px solid red;
-	border-collapse: collapse;
+table.orders {
+	position:relative;
+	top:20px;
 }
 
-.orden td {
-		vertical-align: middle;
-}
-
-.carga {
-	border: 2px solid #339933;
-	background: white;
-	position: relative;
-	clear: none;
-}
-
-.train_spec {
-	border: 2px solid #339933;
-	background: white;
-	position: relative;
-	clear: none;
-}
-
-.ordenes_container {
-	vertical-align: top;
-}
-
-.tiempo {
-	font-weight: bold;
-}
-
-.info {
-	display: block;
-	position: absolute;
-	z-index: 2;
-	background: black;
-	color: white;
-	border: solid 2px red;
-	padding: 4px;
-}
-
-#container{
-	margin: auto;
-}
-
-#atracos {
-	border-collapse:collapse; 
-	border: 1px solid green;
-}
-
-#atracos tr {
-	border-collapse:collapse; 
-	border: 1px solid green;
-}
-
-#atracos tr:hover {
-	border-collapse:collapse;
-	border: 2px solid;
-	background: #AAAAFF;
-}
-
-#atracos td {
-	border-collapse:collapse; 
-	border: 1px solid green; 
-	padding: 2px;
+.travian{
+	position:absolute;
+	top: 100px;
+	left:20%;
+	height:100%;
+	width:80%	
 }

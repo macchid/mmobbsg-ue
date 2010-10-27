@@ -3,8 +3,9 @@
 ?>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="slave.css" />
+		<link rel="stylesheet" type="text/css" href="css/slave.css"/>
 		<script type="text/javascript" src="prototype.js"></script>
+		<script type="text/javascript" src="menu_orden.js"></script>
 	</head>
 	<body>
 <?php
@@ -13,48 +14,91 @@
 	if (isset($_POST['login'])) { 
 		if(! login($_POST['username'], $_POST['password'])){
 ?>
-			<p><strong>Combinaci&oacute;n usuario/contrase&ntilde;a incorrecta! Usted no tiene permiso de acceso.</strong></p>
+			<p class='error'>Combinaci&oacute;n usuario/contrase&ntilde;a incorrecta! Usted no tiene permiso de acceso.</p>
 <?php 
+		}
+		else{
+		#clean post parameters.
+?>
+			<script type='text/javascript'> window.location.assign('index.php');</script>
+<?php
 		}
 	}
 	
 	#if asked to logout
 	if (isset($_GET['logout'])) {
 		logout();
-		echo "<p><strong>Usuario desconectado!</strong></p>";
+		$_SESSION['info'] = "<p class='info'>Usuario desconectado!</p>";
 	}
 
 	#show login form when not logged in
 	if (!isset($_SESSION['auth_userID'])) {
 ?>
-		<form action="main.php" method="post">
-			<p><label>Usuario: </label><input type="text" name="username" /></p>
-			<p><label>Contrase&ntilde;a: </label><input type="password" name="password" /></p>
-			<input type='submit' name='login' value='Ingresar' />
-		</form>
+		<div class='bg'>
+			<form class='login' action="index.php" method="post">
+				<table>
+					<tr><td><label>Usuario: </label></td><td><input type="text" name="username" /></td></tr>
+					<tr><td><label>Contrase&ntilde;a: </label></td><td><input type="password" name="password" /></td></tr>
+				</table>
+				<input type='submit' name='login' value='Ingresar' />
+				<?=$_SESSION['info']?>
+			</form>
+		</div>
+
 <?php
     die();
 } 
 ?>
-		<p><strong>Logeado con usuario: <?php echo $_SESSION['auth_username'];?></strong><br />
-		<a class="cerrar" href='main.php?logout'>Cerrar Sesi&oacute;n</a></p>
+		<p class='header'>
+			<b>Servidor:</b><i> <?=$_SESSION['server']?></i> | 
+			<b>Usuario:</b><i> <?= $_SESSION['auth_username']?></i> |
+			<a href='index.php?logout' class='header'>Cerrar Sesi&oacute;n</a>
+		</p>
 
-		<div id="bot_status"><?include("status.php");?></div>
-		<h4>Server : <?=$_SESSION['server']?></h4>
-		<h4>User : <?=$_SESSION['usuario']?></h4>
-		<?include('menu_bar.php');?>
-		<table>
-			<tr>
-				<td class="ordenes_container" width="480">
-					<h3>Ordenes<a href="javascript:resetOrdenes()"> Borrar todo </a></h3>
-					<table id="ordenes"></table>
-			</td>
-			</tr>
-		</table>
-		<script type="text/javascript" src="motor.js"></script>
-		<script language="JavaScript" type="text/javascript" id="updateOrdenes">
-			<?include('ordenes.php');?>
+		<div class='menu'>
+			<ul>
+				<li>
+					<a href="javascript:menu.go('market')" style="background: url('img/mercado.png') no-repeat; color: #449944">
+						Enviar<br/>Recursos
+					</a>
+				</li>
+				<li>
+					<a href="javascript:menu.go('resource')" style="background: url('img/produccion.png') no-repeat; color: #449944">
+						Subir<br/>Recursos
+					</a>
+				</li>
+				<li>
+					<a href="javascript:menu.go('build')" style="background: url('img/edif_princ.png') no-repeat; color: #449944">
+						Construir<br/>Edificio
+					</a>
+				</li>
+				<li>
+					<a href="javascript:menu.go('raid')" style="background: url('img/porra.png') no-repeat; color: #449944">
+						Lanzar<br/>Atracos
+					</a>
+				</li>
+				<!--li>
+					<a href="javascript:menu.go('')" style="background: url('img/imperano.png') no-repeat; color: #449944">
+						Lanzar<br/>Ataques
+					</a>
+				</li-->
+				<li>
+					<a href="javascript:menu.go('training')" style="background: url('img/cuartel.gif') no-repeat; color: #449944">
+						Entrenar<br/>Tropas
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class='orders'>
+			<h3>Ordenes<a href='javascript:menu.clear()'> Borrar todo </a></h3>
+			<table id='ordenes'></table>
+		</div>
+		<iframe class='travian' src="http://<?=$_SESSION['server']?>/dorf1.php" frameborder='0'> 
+			iFrame no soportado! Mejor utilice firefox, chrome u opera 
+		</iframe>
+		<script type="text/javascript">
+			var menu = new Menu();
+			//menu.display();
 		</script>
-
 	</body>
 </html>
